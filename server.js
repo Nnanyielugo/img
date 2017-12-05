@@ -30,7 +30,6 @@ app.get('*', (req, res) => {
          <meta charset="utf-8">
          <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
          <title>Photo Uploader</title>
-         <link rel="stylesheet" type="text/css" href="/css/styles.css">
          <link rel="stylesheet" type="text/css" href="/css/spinner.css">
          <link rel="stylesheet" href="/bootstrap-3.3.7-dist/css/bootstrap.min.css">
          <link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css"> 
