@@ -49,7 +49,7 @@ app.get('*', (req, res) => {
   });
 });
 
-app.set('port', process.env.PORT || 5000);
+app.set('port', process.env.PORT || 5500);
 let date = Date();
 let server = app.listen(app.get('port'), function(){
     console.log('Server started...\nListening on port: ' + server.address().port);
