@@ -1,14 +1,10 @@
 import React from 'react';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 
-import ReactApp from '../components/ReactApp';
-import MainPage from '../components/MainPage';
-import ImagePage from '../components/ImagePage';
+import App from './App';
 
 
 export default(
-		<Route path='/' component={MainPage}>
-			<IndexRoute component={ReactApp}/>
+		<Route path="/" component={App}>
 		</Route>
 );
-

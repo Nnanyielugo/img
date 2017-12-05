@@ -1,8 +1,8 @@
 // webpack.config.js for Babel 6
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
 
-var config = {
+const config = {
 	entry: './src/index.js',
 	output: { path: __dirname + '/public/js', filename: 'react-app.js' },
 	module: {

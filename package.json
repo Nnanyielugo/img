@@ -20,6 +20,7 @@
     "eslint-plugin-react": "5.0.1",
     "eslint-watch": "2.1.11",
     "express": "*",
+    "extract-text-webpack-plugin": "^3.0.2",
     "fetch.io": "*",
     "lodash": "*",
     "morgan": "^1.9.0",

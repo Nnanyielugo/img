@@ -3,8 +3,6 @@ import _ from 'lodash';
 // import axios from 'axios';
 
 
-import './App.css';
-
 var timer = '';
 
 class App extends Component {
