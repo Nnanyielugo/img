@@ -17,7 +17,8 @@ class App extends Component {
       style: {},
       validate: '', 
       isLoading: true,
-      response: (<div className="init"></div>)
+      
+      response: null
     };
     this.uploadFile1 = '';
     this.uploadFile2 = '';
@@ -49,8 +50,8 @@ class App extends Component {
               status: 'done',
               statusMsg1: (<div><p><i className="fa fa-check">Image processed!</i></p></div>),
               statusMsg2: (<div><p><i className="fa fa-check">Image processed!</i></p></div>),
-              response : (<div className="success"><p><i className="fa fa-check fa-2x" id="pass" aria-hidden="true"></i>&nbsp; Passport and id matches</p></div>)
-              
+              // response : (<div className="success"><p><i className="fa fa-check fa-2x" id="pass" aria-hidden="true"></i>&nbsp; Passport and id matches</p></div>)
+              response: alert('Passport and id matches')
             });
             console.log(val)
             timer = _.delay( this.setOriginalText, 3000);            
@@ -62,7 +63,8 @@ class App extends Component {
               status: 'done',
               statusMsg1: (<div><p><i className="fa fa-check">Image processed!</i></p></div>),
               statusMsg2: (<div><p><i className="fa fa-check">Image processed!</i></p></div>),
-              response : (<div className="success"><p><i className="fa fa-times fa-2x" id="no-pass" aria-hidden="true"></i>&nbsp; No face found!</p></div>)
+              // response : (<div className="success"><p><i className="fa fa-times fa-2x" id="no-pass" aria-hidden="true"></i>&nbsp; No face found!</p></div>)
+              response: alert('No face found!')
             })
             console.log(val)
             timer = _.delay( this.setOriginalText, 3000);
@@ -71,7 +73,8 @@ class App extends Component {
               status: 'done',
               statusMsg1: (<div><p><i className="fa fa-check">Image processed!</i></p></div>),
               statusMsg2: (<div><p><i className="fa fa-check">Image processed!</i></p></div>),
-              response : (<div className="success"><p><i className="fa fa-times fa-2x" id="no-pass" aria-hidden="true"></i>&nbsp; Passport and id do not match</p></div>)
+              // response : (<div className="success"><p><i className="fa fa-times fa-2x" id="no-pass" aria-hidden="true"></i>&nbsp; Passport and id do not match</p></div>)
+              response: alert('Passport and id do not match!')
             })
             console.log(val)
             timer = _.delay( this.setOriginalText, 3000);  
@@ -104,7 +107,7 @@ class App extends Component {
       statusMsg1: (<div><i className="fa fa-plus" aria-hidden="true"></i><p>Upload id card</p></div>), 
       statusMsg2: (<div><i className="fa fa-plus" aria-hidden="true"></i><p>Upload passport</p></div>),
       isLoading: true,
-      response: (<div className="init"></div>)
+      // response: (<div className="init"></div>)
       });
   }
 
@@ -191,7 +194,7 @@ class App extends Component {
 
         <div className="container-fluid">
           <button className="analyze btn btn-default" onClick={this.handleSubmit} disabled={this.state.isLoading}>Analyze</button>
-          {response}
+          <div className="init"></div>
         </div>
       </div>
     );
