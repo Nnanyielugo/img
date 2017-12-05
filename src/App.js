@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-// import axios from 'axios';
-
 
 var timer = '';
 
@@ -47,20 +45,20 @@ class App extends Component {
 					if(val.code == "200"){
 						this.setState({
               status: 'done',
-              statusMsg1: (<div><p id='checkMark'><i className="fa fa-check">Image processed!</i></p></div>),
-              statusMsg2: (<div><p id='checkMark'><i className="fa fa-check">Image processed!</i></p></div>),
+              statusMsg1: (<div><p><i className="fa fa-check">Image processed!</i></p></div>),
+              statusMsg2: (<div><p><i className="fa fa-check">Image processed!</i></p></div>),
               response : (<div className="success"><p><i className="fa fa-check fa-2x" id="pass" aria-hidden="true"></i>&nbsp; Passport and id matches</p></div>)
               
             });
             // console.log(val)
-            timer = _.delay( this.setOriginalText, 1000);            
+            timer = _.delay( this.setOriginalText, 1500);            
           }  
 
           if(val.code == "500"){
             this.setState({
               status: 'done',
-              statusMsg1: (<div><p id='checkMark'><i className="fa fa-check">Image processed!</i></p></div>),
-              statusMsg2: (<div><p id='checkMark'><i className="fa fa-check">Image processed!</i></p></div>),
+              statusMsg1: (<div><p><i className="fa fa-check">Image processed!</i></p></div>),
+              statusMsg2: (<div><p><i className="fa fa-check">Image processed!</i></p></div>),
               response : (<div className="success"><p><i className="fa fa-times fa-2x" id="no-pass" aria-hidden="true"></i>&nbsp; Passport and id do not match</p></div>)
             })
             // console.log(val)
