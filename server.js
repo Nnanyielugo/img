@@ -9,7 +9,8 @@ import routes from './src/routes';
 
 const app = express();
 app.use(cors());
-app.use(logger(':method :url :status :res[content-length] - :response-time ms'));
+app.use(logger('dev'));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true})); // to support URL-encoded bodies
 app.use(express.static('public'));
