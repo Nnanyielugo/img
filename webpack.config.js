@@ -20,40 +20,15 @@ const config = {
 						}
 				}]
 			},{
-					test: /\.css$/,            
-					use: [
-							{
-									loader: "style-loader"
-							},
-							{
-									loader: "css-loader",
-									options:{
-											modules: true
-									}
-							}
-					]
-			},{
-					test: /\.scss$/,            
-					use: [
-							{
-									loader: "style-loader"
-							},
-							{
-									loader: "css-loader",
-									options:{
-											modules: true
-									}
-							},
-							{
-									loader: "sass-loader",
-									options:{
-											modules: true
-									}
-							}
-					]
-							//when installing these modules, install node-sass to make the scss work
-					
-			}
+				test: /\.(png|jp(e*)g|svg)$/,  
+				use: [{
+						loader: 'url-loader',
+						options: { 
+								limit: 28000, // Convert images < 8kb to base64 strings
+								name: 'images/[hash]-[name].[ext]'
+						} 
+				}]
+		}
 		]
 	}
 };

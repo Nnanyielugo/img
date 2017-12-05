@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babel-runtime": "^6.26.0",
     "body-parser": "*",
     "bootstrap": "^3.3.7",
     "eslint": "2.9.0",
@@ -35,6 +36,7 @@
     "babel-cli": "^6.26.0",
     "babel-core": "*",
     "babel-loader": "^7.1.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-polyfill": "*",
     "babel-preset-es2015": "*",
     "babel-preset-react": "*",
@@ -43,12 +45,16 @@
     "babel-register": "*",
     "cors": "*",
     "css-loader": "^0.28.7",
+    "file-loader": "^1.1.5",
     "gulp": "*",
     "gulp-babel": "*",
     "gulp-util": "*",
     "node-sass": "^4.7.2",
+    "postcss-flexbugs-fixes": "^3.2.0",
+    "postcss-loader": "^2.0.9",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
+    "url-loader": "^0.6.2",
     "webpack": "^3.6.0"
   }
 }

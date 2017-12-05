@@ -1,0 +1,189 @@
+.App {
+  text-align: center;
+  overflow-x: hidden;
+  overflow-y: 0;
+}
+
+.topbar{
+  background-color: rgba(1, 1, 255, 0.8);
+  height: 18px;
+}
+
+
+.dropZone{
+  background-color:rgba(128, 128, 128, 0.5);
+  display: block;  
+	width: 21em;
+	height: 19em;		
+	-webkit-transition: all 0.5s;
+	   -moz-transition: all 0.5s;
+	     -o-transition: all 0.5s;
+	        transition: all 0.5s;
+}
+
+.id{
+  margin-right: 2%;
+  margin-top: 5.5em;
+  margin-bottom: 8.6em;
+}
+
+.passport{  
+  margin-top: 5.5em;
+  margin-bottom: 8.6em;
+}
+
+.dropZone div  {
+  position: relative;
+  top: 40%;
+  color: rgba(128, 128, 128, 0.8);
+}
+
+.dropPreview{
+	width:100%;
+ 	height:100%;
+}
+
+.container-fluid{
+  overflow-x: hidden;
+  overflow-y: hidden;
+  bottom: 0;
+  
+  background-color: rgba(1, 1, 255, 0.8);
+}
+
+
+.container-fluid button{
+  margin-top: 5.35%;
+  width: 30%;
+  height: 3.5em;
+  border-radius: 15px;
+  margin-bottom: 4%;
+}
+
+.success{
+  color: #ffffff;
+  margin-bottom: 2%;
+  font-size: 1.3em;
+}
+
+.init{
+  height: 4.43em;
+}
+
+#pass{
+  color: green;
+}
+
+#no-pass{
+  color: red;
+}
+
+#upload-file-container {
+	position: relative;
+}
+
+#upload-file-container input {
+   filter: alpha(opacity=0);
+   opacity: 0;
+   width: 100%;
+   height: 100%;
+   z-index: 10;
+   position: absolute;
+   top: 0;
+   left:0;
+}
+
+#checkMark{
+  top: 40%;
+	font-size: 1.3em;
+	color: green;
+}
+
+#Nocheck{
+  top: 40%;
+	font-size: 1.3em;
+	color: red;
+}
+
+#Nocheck div{
+  top: 40%;
+	font-size: 0.7em;
+  color: red;
+  font-style: italic;
+}
+
+
+/*  ........   styling for mobile view   ........    */
+
+@media screen and (max-width: 768px) {
+  .dropZone{
+    background-color: rgba(248, 241, 241, 0.93);
+    display: block;
+    width: 11.8em;
+    height: 11.5em;
+    border-radius: 100%;	
+    -webkit-transition: all 0.5s;
+       -moz-transition: all 0.5s;
+         -o-transition: all 0.5s;
+            transition: all 0.5s;
+  }
+
+  .id{
+    margin-left: 6%;
+    margin-right: 2%;
+    margin-top: 2.5em;
+    margin-bottom: 1em;
+  }
+  
+  .passport{  
+    margin-left: 6%;
+    margin-top: 2.5em;
+    margin-bottom: 1.6em;
+  }
+
+  .dropZone div  {
+    position: relative;
+    top: 35%;
+    font-style: italic;
+    color: rgba(128, 128, 128, 0.8);
+  }
+
+  .container{
+    background-color: rgba(1, 1, 255, 0.8);
+  }
+
+  .container-fluid{
+    overflow-x: hidden;
+    overflow-y: hidden;
+    bottom: 0;   
+    background-color: #ffffff;
+  }
+
+  .container-fluid button{
+    margin-top: 13.2%;
+    width: 50%;
+    height: 3.5em;
+    border-radius: 35px;
+    margin-bottom: 4%;
+    background-color: rgba(1, 1, 255, 0.8);
+    color: #ffffff;
+    font-weight: bold;
+  }
+
+  .topbar{
+    background-color: rgba(1, 1, 255, 0.8);
+    height: 18px;
+  }
+
+  .success{
+    color: rgb(71, 59, 73);
+    margin-bottom: 2%;
+    font-size: 1.1em;
+  }
+
+  .dropPreview{
+    width:100%;
+     height:100%;
+     border-radius: 100%
+  }
+}

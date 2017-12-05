@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 
-var timer = '';
+let timer = '';
 
 class App extends Component {
   constructor(props){
@@ -16,6 +16,7 @@ class App extends Component {
       statusMsg2: (<div><i className="fa fa-plus" aria-hidden="true"></i><p>Upload passport</p></div>),
       style: {},
       validate: '', 
+      isLoading: true,
       response: (<div className="init"></div>)
     };
     this.uploadFile1 = '';
@@ -28,6 +29,7 @@ class App extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    this.setState({isLoading: true})
   if(!this.uploadFile1 || !this.uploadFile2){
     return;
   }
@@ -42,7 +44,7 @@ class App extends Component {
 			}).then((res) => {
 					return res.json();
 			}).then((val) =>{
-					if(val.code == "200"){
+					if(val.facesMatch == true){
 						this.setState({
               status: 'done',
               statusMsg1: (<div><p><i className="fa fa-check">Image processed!</i></p></div>),
@@ -50,25 +52,38 @@ class App extends Component {
               response : (<div className="success"><p><i className="fa fa-check fa-2x" id="pass" aria-hidden="true"></i>&nbsp; Passport and id matches</p></div>)
               
             });
-            // console.log(val)
-            timer = _.delay( this.setOriginalText, 1500);            
+            console.log(val)
+            timer = _.delay( this.setOriginalText, 3000);            
           }  
 
-          if(val.code == "500"){
-            this.setState({
+          if(val.facesMatch == false){
+            if(val.code == "500"){
+              this.setState({
+              status: 'done',
+              statusMsg1: (<div><p><i className="fa fa-check">Image processed!</i></p></div>),
+              statusMsg2: (<div><p><i className="fa fa-check">Image processed!</i></p></div>),
+              response : (<div className="success"><p><i className="fa fa-times fa-2x" id="no-pass" aria-hidden="true"></i>&nbsp; No face found!</p></div>)
+            })
+            console.log(val)
+            timer = _.delay( this.setOriginalText, 3000);
+            } else if(val.code =="200"){
+              this.setState({
               status: 'done',
               statusMsg1: (<div><p><i className="fa fa-check">Image processed!</i></p></div>),
               statusMsg2: (<div><p><i className="fa fa-check">Image processed!</i></p></div>),
               response : (<div className="success"><p><i className="fa fa-times fa-2x" id="no-pass" aria-hidden="true"></i>&nbsp; Passport and id do not match</p></div>)
             })
-            // console.log(val)
-            timer = _.delay( this.setOriginalText, 1000);            
+            console.log(val)
+            timer = _.delay( this.setOriginalText, 3000);  
+            } else{}
+                      
           }          
     }).catch(error => {
       // return error;
       this.setState({
         statusMsg1: (<div><p id='Nocheck'><i className="fa fa-times">&nbsp;Image not processed!<div>There might be a problem with your connection!</div></i></p></div>),
-        statusMsg2: (<div><p id='Nocheck'><i className="fa fa-times">&nbsp;Image not processed!<div>There might be a problem with your connection!</div></i></p></div>)
+        statusMsg2: (<div><p id='Nocheck'><i className="fa fa-times">&nbsp;Image not processed!<div>There might be a problem with your connection!</div></i></p></div>),
+        isLoading: true
       })
     });
     this.uploadFile1 = null;
@@ -78,12 +93,19 @@ class App extends Component {
         image2PreviewUrl: '',
         status: 'uploading',
         statusMsg1: (<div><p>Uploading...</p></div>),
-        statusMsg2: (<div><p>Uploading...</p></div>)
+        statusMsg2: (<div><p>Uploading...</p></div>),
+        isLoading: true
     });
   }
 
   setOriginalText(){
-    this.setState({status: 'idle', statusMsg1: (<div><i className="fa fa-plus" aria-hidden="true"></i><p>Upload id card</p></div>), statusMsg2: (<div><i className="fa fa-plus" aria-hidden="true"></i><p>Upload passport</p></div>)});
+    this.setState({
+      status: 'idle', 
+      statusMsg1: (<div><i className="fa fa-plus" aria-hidden="true"></i><p>Upload id card</p></div>), 
+      statusMsg2: (<div><i className="fa fa-plus" aria-hidden="true"></i><p>Upload passport</p></div>),
+      isLoading: true,
+      response: (<div className="init"></div>)
+      });
   }
 
   handleImage1Change(e) {
@@ -96,6 +118,7 @@ class App extends Component {
 
     reader.onloadend = () => {
       this.setState({
+        isLoading: false,
         image1PreviewUrl: reader.result,
         style: {background: ''}
       });
@@ -116,6 +139,7 @@ class App extends Component {
     
     reader.onloadend = () => {
       this.setState({
+        isLoading: false,
         image2PreviewUrl: reader.result,
         style: {background: ''}
       });
@@ -162,11 +186,11 @@ class App extends Component {
             </div>
             <div className="col-sm-2 col-md-2 col-xs-2"></div>
           </div>
-        </div>    
-      
+        </div>  
+              
 
         <div className="container-fluid">
-          <button className="analyze" onClick={this.handleSubmit}>Analyze</button>
+          <button className="analyze btn btn-default" onClick={this.handleSubmit} disabled={this.state.isLoading}>Analyze</button>
           {response}
         </div>
       </div>
