@@ -50,9 +50,8 @@ app.get('*', (req, res) => {
   });
 })
 
-
-const server = app.listen(5500, () => {
-  let port = server.address().port;
-  let date = Date();
-console.log(`${date} --- Server running at http://localhost:${port}`);
-});
+app.set('port', process.env.PORT || 5000);
+let date = Date();
+let server = app.listen(app.get('port'), function(){
+    console.log('Server started...\nListening on port: ' + server.address().port);
+})
