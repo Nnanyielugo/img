@@ -1,0 +1,53 @@
+{
+  "name": "nodereact",
+  "version": "1.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "babel-node server.js",
+    "dev": "nodemon index.js",
+    "devgulp": "gulp -watch",
+    "build": "webpack -p"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "*",
+    "bootstrap": "^3.3.7",
+    "eslint": "2.9.0",
+    "eslint-plugin-import": "1.6.1",
+    "eslint-plugin-react": "5.0.1",
+    "eslint-watch": "2.1.11",
+    "express": "*",
+    "fetch.io": "*",
+    "lodash": "*",
+    "morgan": "^1.9.0",
+    "react": "*",
+    "react-dom": "*",
+    "react-dropzone": "*",
+    "react-router": "^3.2.0",
+    "whatwg-fetch": "*"
+  },
+  "devDependencies": {
+    "autoprefixer-loader": "^3.2.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "*",
+    "babel-loader": "^7.1.1",
+    "babel-polyfill": "*",
+    "babel-preset-es2015": "*",
+    "babel-preset-react": "*",
+    "babel-preset-stage-0": "*",
+    "babel-preset-stage-1": "*",
+    "babel-register": "*",
+    "cors": "*",
+    "css-loader": "^0.28.7",
+    "gulp": "*",
+    "gulp-babel": "*",
+    "gulp-util": "*",
+    "node-sass": "^4.7.2",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.18.2",
+    "webpack": "^3.6.0"
+  }
+}
