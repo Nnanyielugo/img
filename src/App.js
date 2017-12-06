@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
+import {Modal, Button} from 'react-bootstrap';
 
 let timer = '';
 
@@ -17,15 +18,23 @@ class App extends Component {
       style: {},
       validate: '', 
       isLoading: true,
-      
-      response: null
+      showModal: false,
+      buttonText: 'Analyze',
+      modalText: '',
+      response: <div className="init"></div>
     };
     this.uploadFile1 = '';
     this.uploadFile2 = '';
     this.handleImage1Change = this.handleImage1Change.bind(this);
     this.handleImage2Change = this.handleImage2Change.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.setOriginalText = this.setOriginalText.bind(this);     
+    this.setOriginalText = this.setOriginalText.bind(this);
+    this.close = this.close.bind(this);     
+  }
+
+  close(e) {
+    e.preventDefault();
+    this.setState({ showModal: false });
   }
 
   handleSubmit(e) {
@@ -37,7 +46,7 @@ class App extends Component {
     let data = new FormData();
 		data.append('file1', this.uploadFile1);
     data.append('file2', this.uploadFile2);
-    console.log(data);
+    // console.log(data);
 
 		fetch('http://45.55.44.21/face-recognition/compare', {
 		  method: 'post',
@@ -50,11 +59,13 @@ class App extends Component {
               status: 'done',
               statusMsg1: (<div><p><i className="fa fa-check">Image processed!</i></p></div>),
               statusMsg2: (<div><p><i className="fa fa-check">Image processed!</i></p></div>),
-              // response : (<div className="success"><p><i className="fa fa-check fa-2x" id="pass" aria-hidden="true"></i>&nbsp; Passport and id matches</p></div>)
-              response: alert('Passport and id matches')
+              response : (<div className="success"><p><i className="fa fa-check fa-2x" id="pass" aria-hidden="true"></i>&nbsp; Passport and id matches</p></div>),
+              showModal: true, 
+              modalText: (<div className="successModal"><p><i className="fa fa-check fa-2x" id="pass" aria-hidden="true"></i>&nbsp; Passport and id matches</p></div>),
+              buttonText: 'Done'
             });
-            console.log(val)
-            timer = _.delay( this.setOriginalText, 3000);            
+            // console.log(val)
+            // timer = _.delay( this.setOriginalText, 3000);            
           }  
 
           if(val.facesMatch == false){
@@ -63,21 +74,25 @@ class App extends Component {
               status: 'done',
               statusMsg1: (<div><p><i className="fa fa-check">Image processed!</i></p></div>),
               statusMsg2: (<div><p><i className="fa fa-check">Image processed!</i></p></div>),
-              // response : (<div className="success"><p><i className="fa fa-times fa-2x" id="no-pass" aria-hidden="true"></i>&nbsp; No face found!</p></div>)
-              response: alert('No face found!')
-            })
+              response : (<div className="success"><p><i className="fa fa-times fa-2x" id="no-pass" aria-hidden="true"></i>&nbsp; No face found!</p></div>),
+              showModal: true, 
+              modalText: (<div className="successModal"><p><i className="fa fa-times fa-2x" id="no-pass" aria-hidden="true"></i>&nbsp; No face found!</p></div>),
+              buttonText: 'Done'
+            });
             console.log(val)
-            timer = _.delay( this.setOriginalText, 3000);
+            // timer = _.delay( this.setOriginalText, 3000);
             } else if(val.code =="200"){
               this.setState({
               status: 'done',
               statusMsg1: (<div><p><i className="fa fa-check">Image processed!</i></p></div>),
               statusMsg2: (<div><p><i className="fa fa-check">Image processed!</i></p></div>),
-              // response : (<div className="success"><p><i className="fa fa-times fa-2x" id="no-pass" aria-hidden="true"></i>&nbsp; Passport and id do not match</p></div>)
-              response: alert('Passport and id do not match!')
+              response : (<div className="success"><p><i className="fa fa-times fa-2x" id="no-pass" aria-hidden="true"></i>&nbsp; Passport and id do not match!</p></div>),
+              showModal: true, 
+              modalText: (<div className="successModal"><p><i className="fa fa-times fa-2x" id="no-pass" aria-hidden="true"></i>&nbsp; Passport and id do not match!</p></div>),
+              buttonText: 'Done'
             })
-            console.log(val)
-            timer = _.delay( this.setOriginalText, 3000);  
+            // console.log(val)
+            // timer = _.delay( this.setOriginalText, 5000);  
             } else{}
                       
           }          
@@ -86,8 +101,11 @@ class App extends Component {
       this.setState({
         statusMsg1: (<div><p id='Nocheck'><i className="fa fa-times">&nbsp;Image not processed!<div>There might be a problem with your connection!</div></i></p></div>),
         statusMsg2: (<div><p id='Nocheck'><i className="fa fa-times">&nbsp;Image not processed!<div>There might be a problem with your connection!</div></i></p></div>),
-        isLoading: true
-      })
+        isLoading: true,
+        showModal: true, 
+        modalText: (<div><p id='Nocheck'><i className="fa fa-times">&nbsp;Image not processed!<div>There might be a problem with your connection!</div></i></p></div>),
+        buttonText: 'Error!'
+      });
     });
     this.uploadFile1 = null;
     this.uploadFile2 = null;
@@ -97,7 +115,8 @@ class App extends Component {
         status: 'uploading',
         statusMsg1: (<div><p>Uploading...</p></div>),
         statusMsg2: (<div><p>Uploading...</p></div>),
-        isLoading: true
+        isLoading: true,
+        buttonText: <div className="loader"></div>
     });
   }
 
@@ -107,7 +126,9 @@ class App extends Component {
       statusMsg1: (<div><i className="fa fa-plus" aria-hidden="true"></i><p>Upload id card</p></div>), 
       statusMsg2: (<div><i className="fa fa-plus" aria-hidden="true"></i><p>Upload passport</p></div>),
       isLoading: true,
-      // response: (<div className="init"></div>)
+      response: (<div className="init"></div>),
+      buttonText: 'Analyze',
+      showModal: false
       });
   }
 
@@ -153,6 +174,8 @@ class App extends Component {
   }
 
   render(){
+    let modalText = this.state.modalText;
+    let buttonText = this.state.buttonText;
     let response = this.state.response;
 		let {image1PreviewUrl} = this.state;
     let {image2PreviewUrl} = this.state;
@@ -193,9 +216,18 @@ class App extends Component {
               
 
         <div className="container-fluid">
-          <button className="analyze btn btn-default" onClick={this.handleSubmit} disabled={this.state.isLoading}>Analyze</button>
-          <div className="init"></div>
+          <button className="analyze btn btn-default" onClick={this.handleSubmit} disabled={this.state.isLoading}>{buttonText}</button>
+          {response}
         </div>
+        
+        <Modal show={this.state.showModal} onHide={this.close} bsSize="small" aria-labelledby="contained-modal-title-sm" className="custom-modal" >
+          <Modal.Body className="modalBody" closeButton>
+            {modalText}            
+          </Modal.Body>          
+          <Button className="modalButton" onClick={this.setOriginalText}>OK</Button>
+          
+        </Modal>
+  
       </div>
     );
 	}

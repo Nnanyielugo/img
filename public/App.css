@@ -66,8 +66,27 @@
   font-size: 1.3em;
 }
 
+.successModal{
+  color: rgb(71, 59, 73);
+  margin-bottom: 2%;
+  font-size: 0.9em;
+}
+
 .init{
   height: 4.43em;
+}
+
+.custom-modal{
+  margin-top: -2.2%;
+}
+
+.modalBody{
+  margin-top: 2%;
+}
+
+.modalButton{
+  margin-left: 75%;
+  margin-bottom: 2%;
 }
 
 #pass{
@@ -112,6 +131,31 @@
   font-style: italic;
 }
 
+.loader { 
+  margin: auto;
+  bottom: 50%; 
+  left: 0;
+  right: 0;
+  border: 3px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 3px solid black;
+  border-bottom: 3px solid red;
+  border-right: 3px solid green;
+  width: 20px;
+  height: 20px;
+  -webkit-animation: spin 0.25s linear infinite;
+  animation: spin 0.175s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 
 /*  ........   styling for mobile view   ........    */
 
