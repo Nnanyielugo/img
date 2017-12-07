@@ -64,7 +64,7 @@ class App extends Component {
               modalText: (<div className="successModal"><p><i className="fa fa-check fa-2x" id="pass" aria-hidden="true"></i>&nbsp; Passport and id matches</p></div>),
               buttonText: 'Done'
             });
-            // console.log(val)
+            console.log(val)
             // timer = _.delay( this.setOriginalText, 3000);            
           }  
 
@@ -91,7 +91,7 @@ class App extends Component {
               modalText: (<div className="successModal"><p><i className="fa fa-times fa-2x" id="no-pass" aria-hidden="true"></i>&nbsp; Passport and id do not match!</p></div>),
               buttonText: 'Done'
             })
-            // console.log(val)
+            console.log(val)
             // timer = _.delay( this.setOriginalText, 5000);  
             } else{}
                       
